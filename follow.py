@@ -7,6 +7,7 @@ import tweepy
 from numpy import genfromtxt
 
 from credentials import *
+import json
 
 # Access and authorize our Twitter credentials from credentials.py
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -17,15 +18,29 @@ my_file = open('nasatwitteraccounts.csv', 'r')
 usernames = my_file.readlines()
 my_file.close()
 
-i = 1
+
+
+myfriends = api.friends.items()
+print(myfriends)what the fucki s thiss shit
+
 
 for line in usernames:
-    user = api.get_user(usernames[i])
-    i = i + 1
+    user = api.get_user(line)
+    break
     if user.following == False:
         user.follow()
-        print('@'+ usernames[i] +' Followed!')
-        sleep(61)
+        print('@'+ line +' Followed!')
+
     else:
-        print('You were already following @'+ usernames[i])
-        sleep(61)
+        print('You were already following @'+ line)
+
+# for line in usernames:
+#     user = api.get_user(usernames[i])
+
+#     if user.following == False:
+#         user.follow()
+#         print('@'+ usernames[i] +' Followed!')
+#         sleep(61)
+#     else:
+#         print('You were already following @'+ usernames[i])
+#         sleep(61)
